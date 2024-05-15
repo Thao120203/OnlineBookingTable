@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/admin :: content('Add Table',~{this :: .aaa})}">
+
+<head>
+	<title th:text="${title}"></title>
+
+</head>
+
+<body>
+	<div class="aaa">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card shadow mb-4">
+					<div class="card-header">
+						<strong class="card-title">Add Table</strong>
+					</div>
+					<div class="card-body">
+						<th:block th:if="${msg != null}">
+							<div class="alert alert-danger" role="alert" th:if="${msg == 1}">
+								<span class="fe fe-minus-circle fe-16 mr-2">
+									<th:block th:text="${msg}"></th:block>
+								</span>
+							</div>
+
+						</th:block>
+
+						<form method="post" th:action="@{/admin/table/add}" class="needs-validation" novalidate>
+							<div class="form-group">
+								<label>Name</label>
+								<input type="text" class="form-control" th:field="${table.name}" id="inputAddress5"
+									required>
+							</div>
+							<div class="form-group">
+								<div class="form-group mb-3">
+									<label for="example-select">Branchs</label>
+									<select th:field="${table.branchs.id}" class="form-control" id="example-select">
+										<option th:each="branchs : ${branch}" th:value="${branchs.id}"
+											th:text="${branchs.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputAddress2">Tabel Type</label>
+								<select th:field="${table.tableType}" class="form-control" id="example-select">
+									<option value="Small Tabel">Small Table</option>
+									<option value="Medium Table">Medium Table</option>
+									<option value="Large Table">Large Table</option>
+									<option value="VIP">VIP</option>
+
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="inputAddress2"> Number Seat</label>
+								<input type="number" class="form-control" th:field="${table.numberOfSeat}"
+									id="inputAddress6" required>
+							</div>
+
+							<button type="submit" class="btn btn-primary">Add</button>
+							</formclass="needs-validation">
+
+					</div> <!-- /. card-body -->
+				</div> <!-- /. card -->
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

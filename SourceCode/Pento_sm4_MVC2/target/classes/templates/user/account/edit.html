@@ -1,0 +1,144 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/a :: content('Profile',~{this :: .aaa})}">
+
+<head>
+	<title th:text="${title}"></title>
+</head>
+
+<body>
+	<div class="aaa">
+
+		<div class="wapper-content">
+
+
+			<div class="loader-center" id="loadermodal">
+				<div class="loader-box">
+					<div class="loader-group">
+						<div class="loader loader--steps icon-loader" aria-hidden="true"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="wapper wap-account">
+					<div class="wapcontent">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+									<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+										<a itemprop="item"  th:href="@{/home/index}"> <span
+												itemprop="name">Home</span></a> <span>></span>
+										<meta itemprop="position" content="1" />
+									</li>
+									<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+										<span itemprop="name"> Profile</span>
+										<meta itemprop="position" content="2" />
+									</li>
+								</ul>
+							</div>
+						</div>
+						<form th:action="@{/account/edit}" class="form-group" data-ajax="true" data-ajax-method="POST"
+							data-ajax-mode="replace" data-ajax-success="onSuccess" data-ajax-update="#formAccountUpdate"
+							enctype="multipart/form-data" id="formAccountUpdate" method="post">
+							<div class="row content-acount">
+								<div class="col-md-4">
+									<ul>
+										<li class="acount-info">
+											<div class="row">
+												<div class="col-md-4 category-profile">
+													<img src="https://pasgo.vn/Assets/Images/webp/no_avatar.webp"
+														id="img-avatar-profile" class="img-circle img-responsive"
+														alt="aaaa" />
+													<span class="file-input btn btn-primary btn-file">
+
+													</span>
+												</div>
+												<div class="col-md-8">
+													<div class="text-manage"><span>Email : </span>
+														<th:block th:text="${account.email}"></th:block>
+													</div>
+													<div class="text-manage"><span>SDT : </span>
+														<th:block th:text="${users.phoneNumber}"></th:block>
+													</div>
+
+												</div>
+											</div>
+										</li>
+										<li class="acount-info">
+											<a class="acount-menu" th:href="@{/account/edit}"></span><span
+													class="text-menu-acount">Account Information</span><span
+													class="pasgo-icondesktop-menublack"></span></a>
+										</li>
+										<li class="acount-info">
+											<a class="acount-menu" th:href="@{/orders/index}"><span
+													class="text-menu-acount">History Order</span><span
+													class="pasgo-icondesktop-menublack"></span></a>
+										</li>
+										<li class="acount-info">
+											<a class="acount-menu" th:href="@{/logout}"></span><span
+													class="text-menu-acount">Logout</span><span
+													class="pasgo-icondesktop-menublack"></span></a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-8">
+									<div class="content-right">
+										<h1>Account Information</h1>
+										<div class="input-group">
+											<span class="input-group-addon">Fist Name: </span>
+											<input class="form-control text-box single-line" type="text"
+												th:field="${users.firstName}" />
+
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Last Name: </span>
+											<input class="form-control text-box single-line" type="text"
+												th:field="${users.lastName}" />
+
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Phone: </span>
+											<input class="form-control text-box single-line" data-val="true" type="text"
+												th:field="${users.phoneNumber}" />
+
+										</div>
+										<div class="input-group sex">
+											Gender:
+											<label>
+												<input th:field="${users.gender}" type="radio" value="Male"
+													data-gtm-form-interact-field-id="0"> Male
+											</label>
+											<label>
+												<input th:field="${users.gender}" type="radio" value="Female"
+													data-gtm-form-interact-field-id="1"> Female
+											</label>
+										</div>
+
+										<div class="input-group">
+											<span class="input-group-addon">Birthday: </span>
+											<input class="form-control text-box single-line" id="datepicker"
+												data-val="true" required="required" type="text"
+												th:field="${users.birthday}" />
+
+										</div>
+
+										<div class="text-center content-update">
+											<input type="submit" class="btn btn-register" value="Cập nhật"
+												onclick="$('#loadermodal').show()" />
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" th:field="${users.id}">
+						</form>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

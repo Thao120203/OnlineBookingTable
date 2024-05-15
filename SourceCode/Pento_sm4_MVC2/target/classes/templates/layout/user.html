@@ -1,0 +1,148 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="content(title, mainContent)"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Home</title>
+	<link rel="stylesheet" th:href="@{/user/assets/css/config.css}" />
+	<link rel="stylesheet" th:href="@{/user/assets/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/user/assets/fontawesome-free-6.5.1-web/css/all.min.css}" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	
+</head>
+
+<body>
+	<div class="app bg-white">
+		<header>
+			<nav class="nav-top flex">
+				<div class="container">
+					<div class="wrapper flex">
+						<a class="nav-top_logo" th:href="@{/home/index}">
+							<span class="logo"></span>
+						</a>
+					</div>
+				</div>
+
+				</ul>
+				<div class="nav-top-right flex">
+					<div class="account dropdowns">
+						<a class="flex" href="">
+							<i class="fa-solid fa-user icon"></i>
+							<span sec:authorize="isAuthenticated()" th:text="${#authentication.name}"> </span>
+
+						</a>
+						<div class="dropdowns-show acount-children">
+							<div class="item">
+								<a th:href="@{/log/login}" class="btn btn-login"
+									th:if="${#authentication.name  == 'anonymousUser'}">Login</a>
+							</div>
+							<div class="item">
+								<a th:href="@{/account/edit}" sec:authorize="isAuthenticated()">Profile</a>
+							</div>
+							<div class="item">
+								<a th:href="@{/logout}" sec:authorize="isAuthenticated()">Logout</a>
+							</div>
+							<div class="item">
+								<a th:href="@{/log/register}" class="btn btn-login"
+									th:if="${#authentication.name  == 'anonymousUser'}">Regster</a>
+							</div>
+						</div>
+					</div>
+					<div class="nav-top_serach">
+						<input type="text" placeholder="Tìm: Buffet, Lẩu, Nướng..." />
+						<button class="btn nav-top_serach-btn">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+	</div>
+	</div>
+	</nav>
+	<nav class="nav-bottom">
+		<div class="container">
+			<div class="wrapper">
+				<div class="gird grid-cols-6">
+					<div class="col-span-5">
+						<form method="post" th:action="@{/branch/search}">
+							<div class="search">
+
+								<input type="text" name="keyword" />
+								<div class="search-right">
+
+									<button class="btn-search btn">
+										<i class="fa-solid fa-magnifying-glass"></i>
+										Search
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="phone-number">
+						<span class="icon-phone"></span>
+						1900 6005
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	</header>
+
+	<div th:replace="${mainContent}"></div>
+	<div class="footer-end">
+
+		<div class="link-company">
+			<a href="http://online.gov.vn/Home/WebDetails/16887" rel="nofollow" target="_blank">CÔNG TY CỔ PHẦN
+				PASGO</a>
+		</div>
+		<p>
+			Văn phòng Hà Nội: Tầng 2 tòa nhà VTC Online, Số 18 Tam Trinh, Q.
+			Hai Bà Trưng, ​​Hà Nội
+		</p>
+		<p>
+			Văn Phòng TP.HCM: Lầu 13, Tòa nhà M-H, Số 728-730 Võ Văn Kiệt,
+			P.1, Quận 5, TP Hồ Chí Minh
+		</p>
+		<p>
+			Tổng đài: 1900 6005 | Email:<a style="color: #333333" href="mailto:cskh@pasgo.vn">
+				CSKH@pasgo.vn</a>
+		</p>
+		<p>
+			Mã số doanh nghiệp: 0106329034 do Sở Kế hoạch đầu tư TP Hà Nội cấp
+			ngày 08/10/2013
+		</p>
+		<div class="wap-help">
+			<p>
+				Mọi ý tưởng, đóng góp của bạn đều được chúng tôi ghi nhận và
+				trân trọng!
+			</p>
+		</div>
+	</div>
+	</div>
+	</footer>
+	</div>
+</body>
+<script th:src="@{/user/assets/js/main.js}"></script>
+
+<script>
+	$(function () {
+		$("#datepicker").datepicker({
+			dateFormat: 'dd-mm-yy'
+		});
+	});
+</script>
+<script>
+	$(function () {
+		$("#datepicker1").datepicker({
+			dateFormat: 'dd-mm-yy'
+		});
+	});
+</script>
+
+
+
+
+</html>
